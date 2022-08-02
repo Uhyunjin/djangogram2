@@ -23,7 +23,8 @@ def main(request):
 def signup(request):
     if request.method == 'GET':
         form = SignUpForm()
-        return render(request, 'users/signup.html', {'form:form'})
+        return render(request, 'users/signup.html', {'form':form})
+
     elif request.method == 'POST':
         form = SignUpForm(request.POST)
 
