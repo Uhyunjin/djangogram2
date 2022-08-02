@@ -1,4 +1,10 @@
+{% extends "users/base.html" %}
+
 Here is main.html
+
+{% block title %}{% endblock title %}
+
+{% block content %}
 
 <form action="{% url 'users:main' %}" method="post">
     {% csrf_token %}
@@ -6,3 +12,6 @@ Here is main.html
     <input type="password" name="password" placeholder="password">
     <input type="submit" value="Login">
 </form>
+
+<a href="{% url 'users:signup' %}">Sign Up</a>
+{% endblock content %}

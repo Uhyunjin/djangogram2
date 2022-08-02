@@ -40,5 +40,5 @@ def signup(request):
                 login(request, user)
                 # Redirect to a success page.
                 return HttpResponseRedirect(reverse('posts:index'))
-            else:
-                return render(request, 'users/main.html')
+    
+        return render(request, 'users/main.html')
