@@ -2,16 +2,23 @@
 
 Here is main.html
 
-{% block title %}{% endblock title %}
+{% block title %}
+Log in
+{% endblock title %}
 
 {% block content %}
 
-<form action="{% url 'users:main' %}" method="post">
+<div class="auth">
+    <form action="{% url 'users:main' %}" method="post">
     {% csrf_token %}
-    <input type="input" name="username" placeholder="username">
-    <input type="password" name="password" placeholder="password">
+    <input type="input" name="username" placeholder="사용자 이름">
+    <input type="password" name="password" placeholder="비밀번호">
     <input type="submit" value="Login">
-</form>
+    </form>
+</div>
 
-<a href="{% url 'users:signup' %}">Sign Up</a>
+<div class="auth_link">
+    <a href="{% url 'users:signup' %}">Sign Up</a>
+</div>
+
 {% endblock content %}
