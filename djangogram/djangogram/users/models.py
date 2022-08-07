@@ -22,7 +22,7 @@ class User(AbstractUser):
     gender = models.CharField(blank=True, choices=GENDER_CHOICES, max_length=255)
 
     followers = models.ManyToManyField("self")
-    folloing = models. ManyToManyField("self")
+    following = models. ManyToManyField("self")
 
     def get_absolute_url(self):
         """Get url for user's detail view.
