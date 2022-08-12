@@ -43,8 +43,8 @@
         <div class="comment">
             {% for comment in post.comment_post %}
                 <div id="comment-{{ comment.id }}">
-                    <!-- {{ comment.author.username }} -->
-                    {{ comment.contents }}
+                    <b>{{ comment.author.username }}</b>
+                    {{ comment.comments }}
                 </div>
             {% endfor %}
         </div>
