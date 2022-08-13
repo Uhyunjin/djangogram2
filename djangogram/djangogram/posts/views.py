@@ -1,7 +1,7 @@
 from djangogram.users.models import User as user_model
 from django.shortcuts import render, get_object_or_404, redirect
 from . import models, serializers
-from .form import CreatePostForm, CommentForm
+from .form import CreatePostForm, CommentForm, UpdatePostForm
 from django.db.models import Q
 from django.urls import reverse
 
@@ -73,6 +73,32 @@ def comment_create(request, post_id):
         else:
             return render(request, 'users/main.html')
 
+
+def post_update(request, post_id):
+    if request.user.is_authenticated:
+        # 작성자 체크
+        post = get_object_or_404(models.Post, pk=post_id)
+        if request.user != post.author:
+            return redirect(revers('posts:index'))
+        # GET 요청
+        if request.method == 'GET':
+            form = UpdatePostForm(instance=post)
+            return render(
+                request,
+                'posts/post_update.html',
+                {"form" : form, "post" : post}
+            )
+    
+        elif request.method =='POST':
+            # 업데이트 버튼 클릭 후 저장을 위한 post api 요청 로직
+            form = UpdatePostForm(request.POST)
+            if form.is_valid():
+                post.caption = form.cleaned_data['caption']
+                post.save()
+                
+            return redirect(reverse('posts:index'))
+    else:
+        return render(request, 'users/main.html')
 
 def comment_delete(request, comment_id):
     if request.user.is_authenticated:
