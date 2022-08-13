@@ -23,7 +23,6 @@ def index(request):
                 request, 
                 'posts/main.html', 
                 {"posts":serializer.data, "comment_form":comment_form}
-
                 )
 
 def post_create(request):
@@ -75,3 +74,13 @@ def comment_create(request, post_id):
             return render(request, 'users/main.html')
 
 
+def comment_delete(request, comment_id):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(models.Comment, pk=comment_id)
+        if request.user == comment.author:
+            comment.delete()
+        
+        return redirect(reverse('posts:index'))
+    
+    else:
+        return render(request, 'users/main.html')
