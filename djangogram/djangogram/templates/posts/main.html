@@ -44,13 +44,20 @@
             {% for comment in post.comment_post %}
                 <div id="comment-{{ comment.id }}">
                     <b>{{ comment.author.username }}</b>
-                    {{ comment.comments }}
+                    {{ comment.contents }}
                 </div>
             {% endfor %}
         </div>
     </div>
 
     <!-- COMMENT INPUT -->
+    <div class="comment-input">
+        <form action="{% url 'posts:comment_create' post.id %}" method="Post" >
+            {% csrf_token %}
+            {{ comment_form }}
+            <input type="submit" value="Post">
+        </form>
+    </div>
 
 </div>
 

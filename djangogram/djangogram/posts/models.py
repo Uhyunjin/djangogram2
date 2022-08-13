@@ -40,4 +40,4 @@ class Comment(TimeStampedModel):
                 on_delete=models.CASCADE, 
                 related_name='comment_post'
                 ) 
-    comments = models.TextField(blank=True)
+    contents = models.TextField(blank=True)

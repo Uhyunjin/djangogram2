@@ -20,7 +20,7 @@ class CommentSerializer(serializers.ModelSerializer):
         model = models.Comment
         fields = (
             "id",
-            "comments",
+            "contents",
             "author",
         )
         
