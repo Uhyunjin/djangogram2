@@ -57,9 +57,9 @@ def post_create(request):
         else:
             return render(request, 'users/main.html')
 
-def comment_create(request, post_id):
+def comment_create(request, comment_id):
     if request.user.is_authenticated:
-        post = get_object_or_404(models.Post, pk=post_id)
+        post = get_object_or_404(models.Post, pk=comment_id)
 
         form = CommentForm(request.POST)
         if form.is_valid():
